@@ -11,6 +11,20 @@
 
 .main {
     background-color: #800080ad;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+    height: 100vh;
+}
+
+.title {
+    width: 100%;
+    text-align: center;
+    font-weight: 800;
+    color: rgb(23 37 84 / 1);
 }
 
 .controller {
@@ -80,6 +94,7 @@
     cursor: pointer;
     border-radius: 3px;
     padding: 0.5rem;
+    margin: 1.5rem 0;
     box-shadow: 4px 4px black;
     transition: transform 50ms ease-in-out;
     display: flex;
