@@ -91,6 +91,9 @@ export default class SoundAnalyzer {
     playAudio() {
         this.audioPlayer.play()
 
+        //* Reinicio el audio context
+        this.audioContext.resume().then(() => {})
+
         this.audioPlayer.addEventListener('play', () => {
             this.configureAudioAnalyzer()
         })
