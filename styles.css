@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.main {
+    background-color: #800080ad;
+}
+
+.controller {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Radio buttons */
+
+.wrapper {
+    /* background-color: white; */
+    display: flex;
+    width: 100%;
+    padding: 0.5rem;
+    position: relative;
+}
+
+.radioButtonContainer {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: fit-content;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 3px;
+    box-shadow: 4px 4px black;
+    transition: transform 50ms ease-in-out;
+}
+
+.option {
+    cursor: pointer;
+}
+
+.radio_btn {
+    display: none;
+    cursor: pointer;
+}
+
+.radioButtonContainer:active {
+    box-shadow: none;
+    background-color: black;
+    color: white;
+    transform: translate(4px, 4px); 
+}
+
+.radio_btn:checked .option {
+    background-color: black;
+    color: white;
+}
+
+/* Input de archivo */
+
+.input_wrapper {
+    width: 100%;
+    padding: 0.5rem;
+}
+
+.input_file_container {
+    width: 100%;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 0.5rem;
+    box-shadow: 4px 4px black;
+    transition: transform 50ms ease-in-out;
+    display: flex;
+    position: relative;
+}
+
+.input_file {
+    margin-left: 0.5rem;
+    cursor: pointer;
+    /* color: transparent; */
+    content: 'Hola';
+    height: 100%;
+    /* display: none; */
+}
+
+.input_file::-webkit-file-upload-button {
+    display: none;
+}
+
+.input_file_container:active {
+    box-shadow: none;
+    background-color: black;
+    color: white;
+    transform: translate(4px, 4px); 
+}
+
+/* .input_label {
+    position: absolute;
+} */
+
+@media screen and (max-width: 500px) {
+    .controller {
+        width: 100%;
+    }
+}
+
+/* Pugbertos */
+
+.pugbertosContainer {
+    margin-top: 1rem;
+    display: flex;
+}

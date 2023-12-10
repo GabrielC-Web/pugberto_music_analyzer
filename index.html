@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beat detector</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="/dist/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+
+    <!-- Div principal -->
+    <main id="main" class="w-full !h-screen flex items-center flex-col !p-4 main">
+
+        <!-- Título -->
+        <h1 class="text-center w-full text-blue-950 font-extrabold">Pugberto Dancing Music Analyzer</h1>
+
+        <!-- Contenedor de controles -->
+        <div class="controller">
+
+            <!-- Contenedor de botones de opción -->
+            <!-- <div class="wrapper" style="gap: 0.5rem;">
+
+                Botón de opción
+                <div class="radioButtonContainer">
+                    <input type="radio" name="" id="file_choice" class="radio_btn">
+                    <label for="file_choice" class="option">Usar archivo local</label>
+                </div>
+                
+                Botón de opción
+                <div class="radioButtonContainer">
+                    <input type="radio" name="" id="live_choice" class="radio_btn">
+                    <label for="live_choice" class="option">Usar micrófono</label>
+                </div>
+
+            </div> -->
+    
+            <!-- Input para subir archivo de música -->
+            <div class="input_wrapper">
+
+                <!-- Input de archivo -->
+                <div id="input_file" class="input_file_container my-3">
+
+                    <!-- ícono de subir archivo -->
+                    <i class="material-icons text-black">upload</i>
+
+                    <!-- Input file -->
+                    <input type="file" name="upload-music" class="input_file" id="file" accept="audio/*">
+                </div>
+
+            </div>
+            
+            <!-- Reproductor de audio -->
+            <audio id="audio_player" controls class="w-96"> 
+            </audio>
+        </div>
+
+        <!-- Contenedor de los pugbertos -->
+        <div id="pugbertosContainer" class="pugbertosContainer">
+
+        </div>
+        <!-- Contenedor de los videos -->
+        <!-- <div class="w-full h-full flex justify-center items-center flex-row sm:flex-row mt-2" style="position: relative;">
+    
+            Reproductores de video
+            <video id="video_player1" class="w-48 " src="res/pugberto_transparent_bg.webm" loop></video>
+            <video id="video_player2" class="w-48 " src="res/pugberto_transparent_bg.webm" loop></video>
+            <video id="video_player3" class="w-48 " src="res/pugberto_transparent_bg.webm" loop></video>
+            <video id="video_player4" class="w-48 " src="res/pugberto_transparent_bg.webm" loop></video>
+            <video id="video_player5" class="w-48 " src="res/pugberto_transparent_bg.webm" loop></video>
+        </div> -->
+    </main>
+
+
+    
+    <!-- Canvas -->
+    <!-- <canvas id="canvas"></canvas> -->
+
+    <!-- Scripts -->
+
+    <!-- Lógica general -->
+    <script type="module" src="logic/index.js"></script>
+
+</body>
+</html>
