@@ -114,10 +114,9 @@
 .input_file {
     margin-left: 0.5rem;
     cursor: pointer;
-    /* color: transparent; */
     content: 'Hola';
     height: 100%;
-    /* display: none; */
+    pointer-events: none;
 }
 
 .input_file::-webkit-file-upload-button {
