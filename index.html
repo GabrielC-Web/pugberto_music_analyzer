@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <!-- <link href="/dist/output.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="icon" type="image/x-icon" href="/res/pugberto.jpg">
 </head>
 <body>
 
@@ -52,13 +53,20 @@
             </div>
             
             <!-- Reproductor de audio -->
-            <audio id="audio_player" controls style="width: 24rem;"> 
+            <audio id="audio_player" controls class="audioPlayer"> 
             </audio>
         </div>
 
-        <!-- Contenedor de los pugbertos -->
-        <div id="pugbertosContainer" class="pugbertosContainer">
+        <!-- Contenedor de las animaciones -->
+        <div class="animationParent">
+            <!-- Contenedor de los pugbertos -->
+            <div id="pugbertosContainer" class="pugbertosContainer">
+            </div>
+    
+            <!-- canvas -->
+            <canvas id="canvas" class="canvas" style="background-color: #000;margin-top:1rem"></canvas>
         </div>
+
     </main>
 
     <!-- Lógica general -->

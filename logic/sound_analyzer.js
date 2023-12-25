@@ -64,7 +64,12 @@ export default class SoundAnalyzer {
      */
     pugbertosAnimations = new PugbertosAnimations(5)
 
+    
+
     constructor(){
+        this.audioPlayer?.addEventListener('pause', (e) => {
+            this.pugbertosAnimations.toggleVideoReproduction(true)
+        })
     }
 
     /**
@@ -133,6 +138,7 @@ export default class SoundAnalyzer {
         //* Añado el canvas si no hay
         if(!this.canvasAnimations.canvas) {
             // this.canvasAnimations.addCanvas()
+            this.canvasAnimations.detectCanvas()
         }
 
         if(!this.pugbertosAnimations.pugbertosContainer.childElementCount) {
@@ -164,7 +170,7 @@ export default class SoundAnalyzer {
         this.getFrequencyData(dataArray)
 
         //* Creo las barras que correspondan
-        // this.canvasAnimations.createBars(bufferLength, dataArray,'red')
+        this.canvasAnimations.createBars(bufferLength, dataArray,'red')
 
         //* Inicio el ciclo de reproducción
         requestAnimationFrame(() => {

@@ -47,6 +47,16 @@ export default class CanvasAnimations {
         this.canvas = document.getElementById('canvas')
 
         this.ctx = this.canvas?.getContext("2d")
+        
+    }
+
+    /**
+     * Detecta el canvas y crea su contexto
+     */
+    detectCanvas() {
+        this.canvas = document.getElementById('canvas')
+
+        this.ctx = this.canvas?.getContext("2d")
 
     }
 
@@ -71,8 +81,8 @@ export default class CanvasAnimations {
         for (let index = 0; index < barsAmount; index++) {
 
             let barHeight = ((this.canvas.height/2)*dataArray[index]/100) - 30
-            
-            this.addBar(barHeight, barWidth, fillStyle)
+
+            this.addBar(barHeight, barWidth, this.setBarColor(barHeight))
         }
     }
 
@@ -92,6 +102,44 @@ export default class CanvasAnimations {
 
         //* Aumento la coordenada de inicio de los rectángulos (para que salgan uno al lado del otro)
         this.initialCoordX += barWidth
+    }
+
+    /**
+     * Genera el color de la barra con base en la altura de esta
+     * @param {*} barHeight 
+     */
+    setBarColor(barHeight) {
+
+        //* Calculo la proporción de tamaño de las barras respecto al tamaño máximo
+        let proportion = Math.abs(barHeight/this.canvas.height)
+
+
+        //* Seteo los colores rojo y azul inversamente proporcionales (En este caso las barras más altas tenderán a ser rojas y las más bajas azules)
+
+        let redValue = 250*proportion
+
+        let blueValue = 250*(1-proportion)
+
+        //* Esto hace que la paleta se vea muy cool
+        // let greenValue = Math.abs(redValue - blueValue)/2
+
+        //* Esto hace que la paleta parezca sopa
+        // let greenValue = 125
+
+        //* Esto hace que los rojos y azules se vean más fuertes
+        let greenValue = 0
+
+        let color = `rgb(${redValue},${greenValue},${blueValue})`
+        return color
+    }
+
+    /**
+     * Cambia el color de fondo del background
+     */
+    changeMainBg(color) {
+        setInterval(() => {
+            this.mainDiv.style.backgroundColor =  color
+        }, 2500);
     }
 }
 
@@ -128,7 +176,7 @@ export class PugbertosAnimations {
         for (let index = 0; index < this.pugbertosAmount; index++) {
 
             pugbertosContainer.insertAdjacentHTML('afterbegin', 
-                `<video id="video_player${index}" class="w-48 " src="res/pugberto_transparent_bg.webm" loop></video>`
+                `<video id="video_player${index}" class="w-48 " src="res/pugberto_reduced.webm" loop type="video/mp4"></video>`
             )
             
         }
