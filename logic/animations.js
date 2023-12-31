@@ -163,8 +163,22 @@ export class PugbertosAnimations {
      */
     playbackRate = 1.0
 
+    /**
+     * Número de pugbertos creados
+     */
+    pugbertosCreated = 0
+
+    /**
+     * Indica que la fuente ha sido cargada
+     */
+    fontsLoaded = false
+
     constructor(pugbertosAmount) {
 
+        //* Escucho el momento en que las fuentes han sido cargadas (Usualmente es lo último en cargar)
+        document.fonts.load('1rem "RubikDoogleShadow"').then(() => {
+            this.fontsLoaded = true
+        })
     }
 
     /**
@@ -176,11 +190,28 @@ export class PugbertosAnimations {
         for (let index = 0; index < this.pugbertosAmount; index++) {
 
             pugbertosContainer.insertAdjacentHTML('afterbegin', 
-                `<video id="video_player${index}" class="w-48 " src="res/pugberto_reduced.webm" loop type="video/mp4"></video>`
+                `<video id="video_player${index}" src="res/pugberto_reduced.webm" loop type="video/mp4"></video>`
             )
-            
+
+            //* Aumento la cantidad de pugbertos creados
+            this.pugbertosCreated+=1
         }
+
+        //* Verifico que el último video de pugberto haya sido añadido
+        if(this.pugbertosCreated >= this.pugbertosAmount -1) {
+
+            //* Escucho el evento playing en el último video añadido
+            document.getElementById(`video_player${this.pugbertosAmount - 1}`).addEventListener('playing', () => {
+
+                //* Si las fuentes han sido cargadas, entonces es momento de mostrar a los pugbertos
+                if(this.fontsLoaded) {
+                    pugbertosContainer.style.opacity = '1'
+                }
+            })
+        }
+        
     }
+
 
     /**
      * Cambia el tamaño de los pugbertos
