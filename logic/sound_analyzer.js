@@ -70,6 +70,8 @@ export default class SoundAnalyzer {
         this.audioPlayer?.addEventListener('pause', (e) => {
             this.pugbertosAnimations.toggleVideoReproduction(true)
         })
+
+        // this.getLocalStream()
     }
 
     /**
@@ -93,17 +95,22 @@ export default class SoundAnalyzer {
     /**
      * Solicita el permiso de audio del navegador
      */
-    getLocalStream() {
-        navigator.mediaDevices
-          .getUserMedia({ video: false, audio: true })
-          .then((stream) => {
-            window.localStream = stream;
-            window.localAudio.srcObject = stream;
-            window.localAudio.autoplay = true;
-          })
-          .catch((err) => {
-            console.error(`you got an error: ${err}`);
-          });
+    async getLocalStream() {
+
+        if (navigator.mediaDevices.getUserMedia !== null) {
+            const options = {
+              video: false,
+              audio: true,
+            };
+             try {
+                const stream = await navigator.mediaDevices.getUserMedia(options); 
+                this.audioContext.resume().then(() => {
+                    this.configureAudioAnalyzer(stream)
+                })
+             }catch (err) {
+              // error handling
+              }
+        }
     }
 
     /**
@@ -123,15 +130,21 @@ export default class SoundAnalyzer {
     /**
      * Crea el contexto para analizar el audio
      */
-    configureAudioAnalyzer() {
+    configureAudioAnalyzer(stream) {
 
         if(!this.audioContext) {
             this.audioContext = new AudioContext()
         }
 
         //* Si no se ha configurado una fuente de audio la configuro
-        if(!this.audioSource) {
+
+        //* Aquí configuro fuente de audio de un elemento html
+        if(!this.audioSource && !stream) {
             this.audioSource = this.audioContext.createMediaElementSource(this.audioPlayer)
+
+        //* Aquí configuro fuente de audio de un stream de audio
+        } else if(!this.audioSource && stream) {
+            this.audioSource = this.audioContext.createMediaStreamSource(stream)
         }
 
         //* Creamos la instancia de análisis de frecuencia y duración

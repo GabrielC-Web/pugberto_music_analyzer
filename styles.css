@@ -34,7 +34,8 @@
     overflow: visible;
     font-weight: 800;
     /* color: rgb(23 37 84 / 1); */
-    color: #52a952
+    /* color: #52a952 */
+    color: #b102b1ad
 }
 
 .controller {
@@ -44,6 +45,12 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    transition: all ease 1s;
+}
+
+.invisible {
+    opacity: 0;
+    transition: all ease-out 1s;
 }
 
 /* Radio buttons */

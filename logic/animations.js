@@ -76,11 +76,18 @@ export default class CanvasAnimations {
 
         //* Creo los rectángulos con su ancho y alto correspondiente
         this.ctx.clearRect(0, 0, this.canvas?.width, this.canvas?.height)
+
+        //* Valor máximo que tendrá el sonido
+        let maxSoundHeight = 255
         
         //* Creo todas las barras
         for (let index = 0; index < barsAmount; index++) {
 
-            let barHeight = ((this.canvas.height/2)*dataArray[index]/100) - 30
+            //* Obtengo el porcentaje de altura de la barra
+            let totalHeightPortion = (dataArray[index]/maxSoundHeight)*100
+            
+            //* Le doy la altura correspondiente a la barra
+            let barHeight = ((this.canvas.height*totalHeightPortion)/100)
 
             this.addBar(barHeight, barWidth, this.setBarColor(barHeight))
         }
@@ -206,10 +213,21 @@ export class PugbertosAnimations {
                 //* Si las fuentes han sido cargadas, entonces es momento de mostrar a los pugbertos
                 if(this.fontsLoaded) {
                     pugbertosContainer.style.opacity = '1'
+
+                    this.animationLoadedEvent()
                 }
             })
         }
         
+    }
+
+    /**
+     * Dispara el evento de que la animación ha sido cargada
+     */
+    animationLoadedEvent() {
+        const event = new Event("animationloaded");
+
+        document.dispatchEvent(event);
     }
 
 
@@ -286,7 +304,7 @@ export class PugbertosAnimations {
 
             const videoPlayer = document.getElementById(`video_player${i}`)
 
-            if(pause) {
+            if(pause && videoPlayer.duration > 0) {
                 videoPlayer.pause()
             } else {
                 videoPlayer.play()
