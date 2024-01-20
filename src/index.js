@@ -149,11 +149,11 @@ document.addEventListener('audioAnalyserData', (e) => {
  */
 function processAudioAnalyserData(data) {
 
-    //* Cambio el ícono de reproducción
-    changeControlButton(data.reproductionState)
-
     //* Cambio el ícono del input
     changeFileIcon({fileLoaded: data.fileLoaded})
+    
+    //* Cambio el ícono de reproducción
+    changeControlButton(data.reproductionState)
 
     //* Obtengo el nombre del archivo
     getFileName(data.fileName)
@@ -177,9 +177,7 @@ $fileButton.addEventListener('click', () => {
 
     if(isFileLoaded) {
         audioAnalyser.removeFile()
-        isFileLoaded = false
         pausePugbertos()
-        changeControlButton('playing')
     }
 
 })
