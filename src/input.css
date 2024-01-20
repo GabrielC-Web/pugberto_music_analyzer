@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    box-sizing: border-box;
+}
+
+/* Contenedor de pugbertos */
+
+.grid_container {
+    display: grid; 
+    grid-template-columns: repeat(5, 2fr); 
+    grid-template-rows:  repeat(3, 60px);  
+    gap: 0px ; 
+    grid-template-areas: 
+        "first . . . last"
+        ". second . third ."
+        ". . middle . ."; 
+    place-items: center;
+}
+
+.chart {
+    /* position: absolute; */
+    /* background-color: white; */
+    width: 100%;
+    max-width: 150px;
+    aspect-ratio: 1;
+    /* padding-top: 60%; */
+}
+
+.first {
+    /* left: 10%; */
+    grid-area: first;
+}
+
+.second {
+    left: 20%;
+    top: 10%;
+    grid-area: second;
+}
+
+.middle {
+    /* left: 50%;
+    translate: -50%;
+    top: 20%; */
+    grid-area: middle;
+}
+
+.third {
+    /* top: 10%;
+    right: 20%; */
+    grid-area: third;
+}
+
+.last {
+    /* right: 10%; */
+    grid-area: last;
+}
+
+/* Estilos de los controles */
+
+.grid-controls {
+    display: grid;
+    justify-content: space-between;
+    align-items: center;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: repeat(9, 1fr);
+    grid-template-areas: 
+    ". fileTitle fileTitle fileTitle  ." 
+    "microphone . . . ."
+    ". . . . ." 
+    "inputFile . . . ." 
+    ". . . . ." 
+    "toggleAudio . . . ." 
+    ". . . . ." 
+    ". . . . ." 
+    ;
+}
+
+#input_file_container {
+    grid-area: inputFile;
+}
+
+#microphone_control {
+    grid-area: microphone;
+}
+
+#reproduction_control {
+    grid-area: toggleAudio;
+}
+
+#file_title {
+    grid-area: fileTitle;
+}
+
+.control-button {
+    @apply size-16 rounded-full bg-purple-500 flex justify-center items-center cursor-pointer active:bg-purple-400 hover:bg-purple-400
+}
+
+/* Título del audio */
+
+.text-circulating {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+}
+
+@keyframes horizontalTextScroll {
+    from { transform: translateX(0) }
+    to { transform: translateX(-100%) }
+} 
+
+.text-container {
+    display: flex;
+    animation: horizontalTextScroll 25s infinite linear;
+}
+
+.text-element {
+    /* white-space: nowrap; */
+    margin: 0;
+    padding: 0;
+}
+
+
