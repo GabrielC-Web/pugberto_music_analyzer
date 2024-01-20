@@ -80,8 +80,8 @@ function processFrequencyData(averagePlaybackSpeed) {
         })
 
         //* Los pugbertos de numero impar irán a la mitad de la velocidad y mantendrán su color base
-        pugbertos[1].speed = initialPugbertoSpeed * 2
-        pugbertos[3].speed = initialPugbertoSpeed * 2
+        pugbertos[1].speed = 6
+        pugbertos[3].speed = 6
 
         pugbertos[1].modifyStyle({hueRotation: 360, saturation: '100%'})
         pugbertos[3].modifyStyle({hueRotation: 360, saturation: '100%'})
@@ -177,7 +177,9 @@ $fileButton.addEventListener('click', () => {
 
     if(isFileLoaded) {
         audioAnalyser.removeFile()
+        isFileLoaded = false
         pausePugbertos()
+        changeControlButton('playing')
     }
 
 })

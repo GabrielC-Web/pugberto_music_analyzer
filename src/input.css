@@ -13,49 +13,42 @@
     grid-template-columns: repeat(5, 2fr); 
     grid-template-rows:  repeat(3, 60px);  
     gap: 0px ; 
-    grid-template-areas: 
-        "first . . . last"
-        ". second . third ."
-        ". . middle . ."; 
-    place-items: center;
+    /* grid-template-areas: 
+        "1 . . . 5"
+        ". 2 . 4 ."
+        ". . 3 . .";  */
+    /* place-items: center; */
 }
 
 .chart {
     /* position: absolute; */
     /* background-color: white; */
-    width: 100%;
-    max-width: 150px;
+    width: 20%;
+    /* max-width: 250px; */
     aspect-ratio: 1;
     /* padding-top: 60%; */
 }
 
 .first {
-    /* left: 10%; */
-    grid-area: first;
+    margin-right: -13%;
+    z-index: 90;
 }
 
 .second {
-    left: 20%;
-    top: 10%;
-    grid-area: second;
+    margin-right: -13%;
 }
 
 .middle {
-    /* left: 50%;
-    translate: -50%;
-    top: 20%; */
-    grid-area: middle;
+    z-index: 100;
 }
 
 .third {
-    /* top: 10%;
-    right: 20%; */
-    grid-area: third;
+    margin-left: -13%;
+    z-index: 90;
 }
 
 .last {
-    /* right: 10%; */
-    grid-area: last;
+    margin-left: -13%;
 }
 
 /* Estilos de los controles */
