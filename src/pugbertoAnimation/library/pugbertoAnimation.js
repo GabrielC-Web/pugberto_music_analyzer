@@ -115,7 +115,7 @@ export class PugbertoAnimation {
                 }
     
                 //* Le doy la url al elemento de imagen
-                element.src = `../res/transparent_sprites/ezgif-frame-${imageIndexUrl}-removebg-preview.png`
+                element.src = `src/pugbertoAnimation/res/transparent_sprites/ezgif-frame-${imageIndexUrl}-removebg-preview.png`
 
                 //* Agrego el elemento al array de elementos de imagen
                 this.images.push(element)
