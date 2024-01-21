@@ -578,6 +578,10 @@ video {
   }
 }
 
+.\!invisible {
+  visibility: hidden !important;
+}
+
 .absolute {
   position: absolute;
 }
@@ -595,24 +599,21 @@ video {
   display: flex;
 }
 
-.\!hidden {
-  display: none !important;
-}
-
 .hidden {
   display: none;
 }
 
-.\!h-1\/5 {
-  height: 20% !important;
-}
-
-.\!h-3\/5 {
-  height: 60% !important;
+.\!h-2\/5 {
+  height: 40% !important;
 }
 
 .h-1\/5 {
   height: 20%;
+}
+
+.h-fit {
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .h-screen {
@@ -623,12 +624,8 @@ video {
   width: 50%;
 }
 
-.w-1\/6 {
-  width: 16.666667%;
-}
-
-.w-10\/12 {
-  width: 83.333333%;
+.w-3\/4 {
+  width: 75%;
 }
 
 .w-full {
@@ -659,8 +656,20 @@ video {
   justify-content: center;
 }
 
+.justify-between {
+  justify-content: space-between;
+}
+
 .overflow-hidden {
   overflow: hidden;
+}
+
+.whitespace-pre-line {
+  white-space: pre-line;
+}
+
+.text-nowrap {
+  text-wrap: nowrap;
 }
 
 .\!bg-red-500 {
@@ -673,13 +682,27 @@ video {
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
-.p-3 {
-  padding: 0.75rem;
+.p-4 {
+  padding: 1rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .text-indigo-500 {
@@ -762,7 +785,7 @@ video {
     " . . . . ." 
     "inputFile . . . ." 
     ". . . . ." 
-    "toggleAudio . . . ." 
+    ". . . . ." 
     ". . . . ." 
     ;
 }
@@ -789,8 +812,8 @@ video {
 
 .control-button {
   display: flex;
-  width: 4rem;
-  height: 4rem;
+  width: 3.5rem;
+  height: 3.5rem;
   cursor: pointer;
   align-items: center;
   justify-content: center;
@@ -807,6 +830,13 @@ video {
 .control-button:active {
   --tw-bg-opacity: 1;
   background-color: rgb(192 132 252 / var(--tw-bg-opacity));
+}
+
+@media (min-width: 768px) {
+  .control-button {
+    width: 4rem;
+    height: 4rem;
+  }
 }
 
 /* Título del audio */
@@ -842,32 +872,44 @@ video {
 /* Estilos del elemento de audio */
 
 .audioProgress {
-  position: relative;
   -webkit-appearance: none;
-  margin: 0;
-  padding: 0;
-  height: 19px;
-  margin: 30px 2.5% 20px 2.5%;
-  float: left;
+  -moz-appearance: none;
+       appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.audioProgress:focus {
   outline: none;
 }
 
 .audioProgress::-webkit-slider-thumb {
-  width: 100%;
-  background-color: rebeccapurple;
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  margin-top: -4px;
+  /* cursor: pointer; */
+  --tw-bg-opacity: 1;
+  background-color: rgb(168 85 247 / var(--tw-bg-opacity))
 }
 
 .audioProgress:hover::-webkit-slider-thumb {
-  opacity: 1;
-  background-color: red;
-  color: red;
+  --tw-bg-opacity: 1;
+  background-color: rgb(147 51 234 / var(--tw-bg-opacity));
+}
+
+.audioProgress:focus::-webkit-slider-thumb {
+  outline: 3px solid rgb(147 51 234 / 1);
+  outline-offset: 0.125rem;
 }
 
 .audioProgress::-webkit-slider-runnable-track {
-  -webkit-appearance: none;
-  box-shadow: none;
-  border: none;
-  background: transparent;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  height: 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(216 180 254 / var(--tw-bg-opacity))
 }
 
 #audio_moment {
@@ -881,11 +923,5 @@ video {
 
   .sm\:h-2\/3 {
     height: 66.666667%;
-  }
-}
-
-@media (min-width: 768px) {
-  .md\:w-10\/12 {
-    width: 83.333333%;
   }
 }

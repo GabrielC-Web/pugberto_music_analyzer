@@ -204,6 +204,9 @@ export class PugbertoAnimation {
      */
     animate() {
 
+        //* Detengo la animación
+        this.stopAnimation()
+
         //* Inicio la animación
         this.animation = requestAnimationFrame(() => {
             this.animate()

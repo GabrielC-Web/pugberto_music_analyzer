@@ -85,8 +85,9 @@ function processFrequencyData(averagePlaybackSpeed) {
         })
 
         //* Los pugbertos de numero impar irán a la mitad de la velocidad y mantendrán su color base
-        pugbertos[1].speed = 6
-        pugbertos[3].speed = 6
+        //* Si la velocidad promedio es muy baja, entonces significa que todos los pugbertos están detenidos
+        pugbertos[1].speed = averagePlaybackSpeed > 10 ? 6: 0
+        pugbertos[3].speed = averagePlaybackSpeed > 10 ? 6: 0
 
         pugbertos[1].modifyStyle({hueRotation: 360, saturation: '100%'})
         pugbertos[3].modifyStyle({hueRotation: 360, saturation: '100%'})
@@ -99,6 +100,11 @@ function processFrequencyData(averagePlaybackSpeed) {
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 //? Cambio de apariencia de controles
+
+/**
+ * Container del control de audio
+ */
+let $audioControlContainer = document.getElementById('audio_control_container')
 
 /**
  * Ícono de reproducción
@@ -222,9 +228,9 @@ function changeControlButton(reproductionState) {
 
     //* Si el archivo está cargado muestro el botón
     if(isFileLoaded) {
-        $reproductionButton.classList.remove('!hidden')
+        $audioControlContainer.classList.remove('!invisible')
     } else {
-        $reproductionButton.classList.add('!hidden')
+        $audioControlContainer.classList.add('!invisible')
     }
 
     //* Cambio el ícono y reproduzco la animación
@@ -306,14 +312,11 @@ function changeTimelinePosition () {
  * Cambia el progreso del audio de acuerdo a la posición del track
  */
 function changeProgress () {
-    const time = ($audioTimeline.value * $audioElement.duration) / 100;
 
-    console.log(getAudioMinutes(time) +  ' / ' + getAudioMinutes($audioElement.duration));
+    const time = ($audioTimeline.value * $audioElement.duration) / 100;
 
     $audioElement.currentTime = time;
 
-    //* Cambio el momento del audio
-    // $audioMoment.innerHTML = getAudioMinutes(time) +  ' / ' + getAudioMinutes($audioElement.duration)
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -362,8 +365,6 @@ function getAudioMinutes(audioMoment) {
 
     //* Obtengo la cantidad de minutos
     let minute = String(audioMoment / 60).split('.')[0]
-
-    // console.log(Number('0.' + String(audioMoment / 60).split('.')[1]));
 
     //* Obtengo la cantidad de segundos
     let seconds = String(Math.floor(Number('0.' + String(audioMoment / 60).split('.')[1]) * 60))
