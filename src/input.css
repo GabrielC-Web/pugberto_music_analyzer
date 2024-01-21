@@ -8,26 +8,9 @@
 
 /* Contenedor de pugbertos */
 
-.grid_container {
-    display: grid; 
-    grid-template-columns: repeat(5, 2fr); 
-    grid-template-rows:  repeat(3, 60px);  
-    gap: 0px ; 
-    /* grid-template-areas: 
-        "1 . . . 5"
-        ". 2 . 4 ."
-        ". . 3 . .";  */
-    /* place-items: center; */
-}
-
+/* Cuadro que contiene a cada pugberto */
 .chart {
-    /* position: absolute; */
-    /* background-color: white; */
-    width: 20%;
-    height: fit-content;
-    /* max-width: 250px; */
-    aspect-ratio: 1;
-    /* padding-top: 60%; */
+    @apply w-2/5 sm:w-1/5 h-fit aspect-square
 }
 
 .first {
@@ -50,46 +33,6 @@
 
 .last {
     margin-left: -13%;
-}
-
-/* Estilos de los controles */
-
-.grid-controls {
-    display: grid;
-    justify-content: space-between;
-    align-items: center;
-    grid-template-columns: repeat(5,1fr);
-    grid-template-rows: repeat(9, 1fr);
-    grid-template-areas: 
-    ". fileTitle fileTitle fileTitle  ." 
-    "audioElement audioElement audioElement audioElement audioElement"
-    "microphone . . . ." 
-    " . . . . ." 
-    "inputFile . . . ." 
-    ". . . . ." 
-    ". . . . ." 
-    ". . . . ." 
-    ;
-}
-
-#input_file_container {
-    grid-area: inputFile;
-}
-
-#microphone_control {
-    grid-area: microphone;
-}
-
-#reproduction_control {
-    grid-area: toggleAudio;
-}
-
-#file_title {
-    grid-area: fileTitle;
-}
-
-#audio_player {
-    /* grid-area: audioElement; */
 }
 
 .control-button {
@@ -158,8 +101,4 @@
     border-radius: 0.5rem;
     height: 0.5rem;
     @apply bg-purple-300
-}
-
-#audio_moment {
-    color: white;
 }

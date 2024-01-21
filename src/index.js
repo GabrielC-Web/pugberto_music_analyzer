@@ -145,9 +145,14 @@ let $audioElement = document.getElementById('audio_player')
 let $audioTimeline = document.getElementById('audio_progress')
 
 /**
- * Indica el tiempo actual y la duración del audio
+ * Indica el tiempo actual del audio
  */
 let $audioMoment = document.getElementById('audio_moment')
+
+/**
+ * Indica la duración del audio
+ */
+let $audioDuration = document.getElementById('audio_duration')
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -211,9 +216,14 @@ $fileButton.addEventListener('click', () => {
 $audioElement.addEventListener('timeupdate', (e) => {
 
     //* Cambio el momento del audio
-    $audioMoment.innerHTML = getAudioMinutes($audioElement.currentTime) +  ' / ' + getAudioMinutes($audioElement.duration)
+    $audioMoment.innerHTML = getAudioMinutes($audioElement.currentTime)
 
+    //* Obtengo la duración del audio
+    $audioDuration.innerHTML = getAudioMinutes($audioElement.duration)
+
+    //* Actualizo la posición en el input range
     changeTimelinePosition()
+
 })
 
 $audioTimeline.addEventListener('change', changeProgress);

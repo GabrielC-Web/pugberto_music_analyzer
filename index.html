@@ -11,78 +11,101 @@
 <body>
 
     <!-- Contenedor principal -->
-    <main class="h-screen w-screen bg-black flex items-stretch justify-end flex-col overflow-hidden">
+    <main class="h-screen w-screen bg-black overflow-hidden py-3">
 
-        <!-- Espacio para controles -->
-        <section class="!h-2/5 sm:h-2/3 w-full grid-controls px-4">
+        <!-- Contenedor general -->
+        <div class="w-full h-full flex flex-col justify-between max-w-screen-xl mx-auto px-4 relative">
 
-            <!-- Contenedor de título de archivo -->
-            <div class="w-1/2 mx-auto overflow-hidden" id="file_title">
-
-                <!-- Contenedor de los textos -->
-                <div class="text-circulating" id="file_title_carousel">
-                </div>
-
-            </div>
-            
-            <!-- Botón para controlar activación de micrófono -->
-            <!-- <button class="control-button" id="microphone_control">
-
-                Ícono de micrófono
-                <span class="material-symbols-outlined text-white">
-                    mic
-                </span>
-
-            </button> -->
-            
-            <!-- Contenedor de input de archivo -->
-            <button id="input_file_container" class="control-button" onclick="{document.getElementById('input_file').click()}">
+            <!-- Espacio para titulos -->
+            <section class="!h-fit w-full">
                 
-                <!-- <label for="input_file" class="text-indigo-500">Selecciona un archivo</label> -->
-                <input class="hidden" type="file" name="input_file" id="input_file">
+                <!-- Título principal -->
+                <h1 id="main_title" class="text-white text-center p-0 m-0 py-4">Pugberto Music Analyser</h1>
+    
+                <!-- Contenedor de título de archivo -->
+                <div class="w-10/12 sm:w-1/2 mx-auto overflow-hidden" id="file_title">
+                    
+    
+                    <!-- Contenedor de los textos -->
+                    <div class="text-circulating" id="file_title_carousel">
+                    </div>
+    
+                </div> 
+    
+            </section>
+    
+            <!-- Contendrá a los pugbertos -->
+            <section class="h-fit w-full flex justify-center items-end absolute bottom-40 left-1/2 -translate-x-1/2">
+    
+                <!-- Cuadros de pugbertos -->
+                
+                <div id="first" class="chart first"></div>
+                <div id="second"  class="chart second"></div>
+                <div id="middle"  class="chart middle"></div>
+                <div id="third"  class="chart third"></div>
+                <div id="last"  class="chart last"></div>
+    
+            </section>
+    
+            <!-- Controles -->
+            <section class="w-full">
+    
+                <!-- Reproductor del audio cargado -->
+                <audio id="audio_player" class="w-full hidden"></audio>
+    
+                <!-- Control de reproducción -->
+                <div id="audio_control_container" class="w-full flex items-center justify-center !invisible overflow-hidden">
+    
+                    <!-- Duración -->
+                    <p id="audio_moment" class="text-center text-white text-xs text-nowrap whitespace-pre-line"></p>
+        
+                    <!-- Progreso del audio -->
+                    <input id="audio_progress" type="range" class="audioProgress h-fit w-3/5 sm:w-10/12 px-3" max="100" value="0">
+                    
+                    <!-- Duración -->
+                    <p id="audio_duration" class="text-center text-white text-xs text-nowrap whitespace-pre-line"></p>
+    
+                </div>
+    
+                <!-- Contenedor de controles -->
+                <div class="w-full flex justify-center items-center py-5" style="gap: 3rem;">
+    
+                    <!-- Contenedor de input de archivo -->
+                    <button id="input_file_container" class="control-button" onclick="{document.getElementById('input_file').click()}">
+                            
+                        <!-- <label for="input_file" class="text-indigo-500">Selecciona un archivo</label> -->
+                        <input class="hidden" type="file" name="input_file" id="input_file">
+        
+                        <!-- Ícono de input de archivo -->
+                        <span class="material-symbols-outlined siz text-white" id="file_icon">
+                            upload
+                        </span>
+        
+                    </button>
+    
+                    <!-- Control de pausa/reproducir audio -->
+                    <button class="control-button !size-20" id="reproduction_control">
+                        <span class="material-symbols-outlined text-white" id="reproduction_icon">
+                            play_arrow
+                        </span>
+                    </button>
+        
+                    <!-- Botón para controlar activación de micrófono -->
+                    <button class="control-button !invisible" id="microphone_control">
+        
+                        <!-- Ícono de micrófono -->
+                        <span class="material-symbols-outlined text-white">
+                            mic
+                        </span>
+        
+                    </button>
+    
+                </div>
+    
+            </section>
 
-                <!-- Ícono de input de archivo -->
-                <span class="material-symbols-outlined siz text-white" id="file_icon">
-                    upload
-                </span>
+        </div>
 
-            </button>
-
-        </section>
-
-        <!-- Contendrá a los pugbertos -->
-        <section class="relative !h-2/5 sm:h-1/3 w-full flex justify-center items-center">
-
-            <!-- Cuadros de pugbertos -->
-            
-            <div id="first" class="chart first"></div>
-            <div id="second"  class="chart second"></div>
-            <div id="middle"  class="chart middle"></div>
-            <div id="third"  class="chart third"></div>
-            <div id="last"  class="chart last"></div>
-
-        </section>
-
-        <!-- Control de audio -->
-        <section id="audio_control_container" class="w-full mx-auto h-1/5 p-4 flex items-center justify-between !invisible">
-
-            <!-- Reproductor del audio cargado -->
-            <audio id="audio_player" class="w-full"></audio>
-
-            <!-- Control de pausa/reproducir audio -->
-            <button class="control-button" id="reproduction_control">
-                <span class="material-symbols-outlined text-white" id="reproduction_icon">
-                    play_arrow
-                </span>
-            </button>
-
-            <!-- Progreso del audio -->
-            <input id="audio_progress" type="range" class="audioProgress h-fit w-3/4 px-3" max="100" value="0">
-            
-            <p id="audio_moment" class="text-center text-xs text-nowrap whitespace-pre-line"></p>
-        </section>
-
-        <!--TODO Aquí habrá otra configuración de pugbertos acomodades de otra manera -->
 
     </main>
     
