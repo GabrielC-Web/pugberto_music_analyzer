@@ -36,7 +36,12 @@ function playPugbertos() {
  */
 function pausePugbertos() {
     pugbertos.forEach(pugberto => {
-        pugberto.stopAnimation() 
+
+        //* Detengo a todos los pugbertos
+        pugberto.stopAnimation()
+
+        //* Le devuelvo el color original a todos
+        pugberto.modifyStyle({hueRotation: 360, saturation: '100%'})
     })
 }
 
@@ -123,6 +128,21 @@ let $fileIcon = document.getElementById('file_icon')
  */
 let isFileLoaded = false
 
+/**
+ * Elemento de reproducción de audio
+ */
+let $audioElement = document.getElementById('audio_player')
+
+/**
+ * Elemento de vista y control del progreso del audio
+ */
+let $audioTimeline = document.getElementById('audio_progress')
+
+/**
+ * Indica el tiempo actual y la duración del audio
+ */
+let $audioMoment = document.getElementById('audio_moment')
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -182,6 +202,16 @@ $fileButton.addEventListener('click', () => {
 
 })
 
+$audioElement.addEventListener('timeupdate', (e) => {
+
+    //* Cambio el momento del audio
+    $audioMoment.innerHTML = getAudioMinutes($audioElement.currentTime) +  ' / ' + getAudioMinutes($audioElement.duration)
+
+    changeTimelinePosition()
+})
+
+$audioTimeline.addEventListener('change', changeProgress);
+  
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -262,6 +292,30 @@ function changeFileIcon(config) {
 
 }
 
+/**
+ * Cambia la posición del track para mostrar el progreso
+ */
+function changeTimelinePosition () {
+
+    const percentagePosition = (100*$audioElement.currentTime) / $audioElement.duration;
+    $audioTimeline.style.backgroundSize = `${percentagePosition}% 100%`;
+    $audioTimeline.value = percentagePosition;
+}
+
+/**
+ * Cambia el progreso del audio de acuerdo a la posición del track
+ */
+function changeProgress () {
+    const time = ($audioTimeline.value * $audioElement.duration) / 100;
+
+    console.log(getAudioMinutes(time) +  ' / ' + getAudioMinutes($audioElement.duration));
+
+    $audioElement.currentTime = time;
+
+    //* Cambio el momento del audio
+    // $audioMoment.innerHTML = getAudioMinutes(time) +  ' / ' + getAudioMinutes($audioElement.duration)
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 //? Título del archivo
@@ -299,6 +353,27 @@ function getFileName(fileName) {
         </div>
     `)
     
+}
+
+/**
+ * Obtiene los minutos y segundos de cualquier momento del audio
+ */
+function getAudioMinutes(audioMoment) {
+
+    //* Obtengo la cantidad de minutos
+    let minute = String(audioMoment / 60).split('.')[0]
+
+    // console.log(Number('0.' + String(audioMoment / 60).split('.')[1]));
+
+    //* Obtengo la cantidad de segundos
+    let seconds = String(Math.floor(Number('0.' + String(audioMoment / 60).split('.')[1]) * 60))
+
+    //* Si la cantidad de segundos está por debajo de 10 le agrego un cero por delante
+    if(seconds.length == 1) {
+        seconds = '0' + seconds
+    }
+
+    return minute + ':' + seconds
 }
 
 

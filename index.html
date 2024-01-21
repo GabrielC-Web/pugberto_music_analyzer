@@ -14,7 +14,7 @@
     <main class="h-screen w-screen bg-black flex items-stretch justify-end flex-col overflow-hidden">
 
         <!-- Espacio para controles -->
-        <section class="h-3/4 sm:h-2/3 w-full grid-controls px-4">
+        <section class="!h-3/5 sm:h-2/3 w-full grid-controls px-4">
 
             <!-- Contenedor de título de archivo -->
             <div class="w-1/2 mx-auto overflow-hidden" id="file_title">
@@ -26,14 +26,14 @@
             </div>
             
             <!-- Botón para controlar activación de micrófono -->
-            <button class="control-button" id="microphone_control">
+            <!-- <button class="control-button" id="microphone_control">
 
-                <!-- Ícono de micrófono -->
+                Ícono de micrófono
                 <span class="material-symbols-outlined text-white">
                     mic
                 </span>
 
-            </button>
+            </button> -->
             
             <!-- Contenedor de input de archivo -->
             <button id="input_file_container" class="control-button" onclick="{document.getElementById('input_file').click()}">
@@ -55,13 +55,10 @@
                 </span>
             </button>
 
-            <!-- Reproductor del audio cargado -->
-            <audio id="audio_player" class="hidden"></audio>
-
         </section>
 
         <!-- Contendrá a los pugbertos -->
-        <section class="relative h-1/4 sm:h-1/3 w-full flex justify-center">
+        <section class="relative !h-1/5 sm:h-1/3 w-full flex justify-center items-center">
 
             <!-- Cuadros de pugbertos -->
             
@@ -70,6 +67,20 @@
             <div id="middle"  class="chart middle"></div>
             <div id="third"  class="chart third"></div>
             <div id="last"  class="chart last"></div>
+
+        </section>
+
+        <section class="md:w-10/12 w-full mx-auto h-1/5 p-3">
+
+            <!-- Reproductor del audio cargado -->
+            <audio id="audio_player" class="w-full"></audio>
+
+            <!-- Progreso del audio -->
+            <div class="w-full flex">
+                <input id="audio_progress" type="range" class="w-10/12 audioProgress" max="100" value="0">
+                <h3 id="audio_moment" class="w-1/6"></h3>
+            </div>
+
 
         </section>
 

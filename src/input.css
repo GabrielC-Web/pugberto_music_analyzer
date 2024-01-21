@@ -24,6 +24,7 @@
     /* position: absolute; */
     /* background-color: white; */
     width: 20%;
+    height: fit-content;
     /* max-width: 250px; */
     aspect-ratio: 1;
     /* padding-top: 60%; */
@@ -31,11 +32,11 @@
 
 .first {
     margin-right: -13%;
-    z-index: 90;
 }
 
 .second {
     margin-right: -13%;
+    z-index: 90;
 }
 
 .middle {
@@ -61,12 +62,12 @@
     grid-template-rows: repeat(9, 1fr);
     grid-template-areas: 
     ". fileTitle fileTitle fileTitle  ." 
-    "microphone . . . ."
-    ". . . . ." 
+    "audioElement audioElement audioElement audioElement audioElement"
+    "microphone . . . ." 
+    " . . . . ." 
     "inputFile . . . ." 
     ". . . . ." 
     "toggleAudio . . . ." 
-    ". . . . ." 
     ". . . . ." 
     ;
 }
@@ -85,6 +86,10 @@
 
 #file_title {
     grid-area: fileTitle;
+}
+
+#audio_player {
+    /* grid-area: audioElement; */
 }
 
 .control-button {
@@ -116,4 +121,37 @@
     padding: 0;
 }
 
+/* Estilos del elemento de audio */
 
+.audioProgress {
+    position: relative;
+    -webkit-appearance: none;
+    margin: 0;
+    padding: 0;
+    height: 19px;
+    margin: 30px 2.5% 20px 2.5%;
+    float: left;
+    outline: none;
+}
+
+.audioProgress::-webkit-slider-thumb {
+    width: 100%;
+    background-color: rebeccapurple;
+}
+
+.audioProgress:hover::-webkit-slider-thumb {
+    opacity: 1;
+    background-color: red;
+    color: red;
+}
+
+.audioProgress::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+}
+
+#audio_moment {
+    color: white;
+}
